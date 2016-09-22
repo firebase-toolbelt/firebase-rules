@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "users/$userId": {
+      "read": "auth.uid !== null",
+      "write": "auth.uid === $userId",
+      "validate": "(data.val() !== null) || ((data.val() === null) && (newData.hasChildren(['firstName', 'displayName'])))"
+    }
+  }
+}

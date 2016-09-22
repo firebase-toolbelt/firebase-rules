@@ -1,0 +1,22 @@
+{
+  "name": "firebase-rules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tasking/firebase-rules.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tasking/firebase-rules/issues"
+  },
+  "homepage": "https://github.com/tasking/firebase-rules#readme",
+  "dependencies": {
+    "jsonfile": "^2.4.0"
+  }
+}
