@@ -5,7 +5,11 @@
  */
 
 const jsonfile = require('jsonfile');
+const { mergeRules } = require('./rules');
+
+jsonfile.spaces = 2;
 
 module.exports = function exportRules(rules, path = 'database.rules.json') {
-  return jsonfile.writeFile(path, rules, { spaces: 2 });
+  if (rules.constructor === Array) { rules = mergeRules(rules); }
+  return jsonfile.writeFile(path, { rules });
 }

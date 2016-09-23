@@ -2,7 +2,7 @@
  * Common firebase rules
  */
 
-const arrToJsonStr = require('./_arrToJsonStr');
+const jsonArr = require('./jsonArr');
 
 module.exports = {
 
@@ -34,7 +34,7 @@ module.exports = {
    * Children
    */
 
-  dataHasChildren: (children) => `data.hasChildren(${arrToJsonStr(children)})`,
-  newDataHasChildren: (children) => `newData.hasChildren(${arrToJsonStr(children)})`,
+  dataHasChildren: (children) => `data.hasChildren(${jsonArr(children)})`,
+  newDataHasChildren: (children) => `newData.hasChildren(${jsonArr(children)})`,
 
 }

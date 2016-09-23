@@ -1,17 +1,17 @@
-/**
- *
- * IN DEVELOPMENT
- *
- * Will merge rulesets and transpose special keys into valid rule paths.
- * 
- */
+const buildPath = require('./_utils/buildPath'); 
 
-const _isObject = require('../helpers/_isObject');
+function createRules(rulesObj) {
+  let rules = {};
+  const pathKeys = Object.getOwnPropertyNames(rulesObj);
+  pathKeys.forEach((pathKey) => buildPath(rules, pathKey, rulesObj[pathKey]));
+  return rules;
+};
 
-module.exports = function createRules() {
-  const args = Array.from(arguments);
-  if (!args.length || args.filter((rule) => !_isObject(rule)).length) { throw new Error('firebase-rules: "createRules" can only receive objects as arguments.'); }
-  return {
-    rules: args.reduce((acc, rule) => Object.assign(acc, rule), {})
-  };
+function mergeRules(rulesArr = []) {
+  return rulesArr.reduce((acc, rules) => Object.assign(acc, rules), {});
 }
+
+module.exports = {
+  createRules,
+  mergeRules
+};

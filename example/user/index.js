@@ -1,7 +1,5 @@
-const createRules = require('../../src/rules');
-const { anyCondition, everyConditions } = require('../../src/conditions');
+const { anyCondition, everyConditions, createRules, exportRules } = require('../../index');
 const { isAuth, valueIsAuthUserId, dataExists, dataDoesNotExists, newDataHasChildren } = require('../../helpers/common');
-const exportRules = require('../../src/export');
 
 const userRules = createRules({
   "users/$userId": {
@@ -17,4 +15,6 @@ const userRules = createRules({
   }
 });
 
-exportRules(userRules);
+console.log(userRules);
+
+exportRules(userRules, __dirname + '/user.json');
