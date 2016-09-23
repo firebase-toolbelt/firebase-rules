@@ -5,14 +5,14 @@
  * If throwError is set to true, it throws an error on either an empty array or a falsy value.
  * 
  * e.g.
- * arrToJsonStr([1, 3, 'something']) => '[\'1\', \'3\', \'something\']'
- * arrToJsonStr([]) => ''
- * arrToJsonStr([], true) => '[]'
- * arrToJsonStr([], true, true) => ERROR
+ * jsonArr([1, 3, 'something']) => '[\'1\', \'3\', \'something\']'
+ * jsonArr([]) => ''
+ * jsonArr([], true) => '[]'
+ * jsonArr([], true, true) => ERROR
  * 
  */
 
-module.exports = function arrToJsonStr(arr, showEmpty, throwError) {
+module.exports = function jsonArr(arr, showEmpty, throwError) {
   
   if (!arr || !arr.length) {
     if (throwError) {

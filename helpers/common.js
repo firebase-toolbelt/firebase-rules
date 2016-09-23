@@ -37,4 +37,4 @@ module.exports = {
   dataHasChildren: (children) => `data.hasChildren(${jsonArr(children)})`,
   newDataHasChildren: (children) => `newData.hasChildren(${jsonArr(children)})`,
 
-}
+};
