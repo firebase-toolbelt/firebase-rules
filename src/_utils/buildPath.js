@@ -20,7 +20,7 @@ module.exports = function buildPath(targetObj, path, values, pathArr, curPathIdx
   valueKeys.forEach((valueKey) => {
     if (!validRulesKeys[valueKey]) { return; }
       
-    const valueKeyRules = values[valueKey];
+    const valueKeyRules = values[valueKey].toString();
     const finalValueKey = `.${valueKey}`;
     const relativeRootStr = 'newDataRoot().';
     
