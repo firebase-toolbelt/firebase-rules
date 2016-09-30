@@ -14,6 +14,15 @@ module.exports = {
   valueIsAuthUserId: (value) => `auth.uid === ${value}`,
 
   /**
+   * Val
+   */
+  
+  dataVal: 'data.val()',
+  newDataVal: 'newData.val()',
+  valueIsDataVal: (value) => `data.val() === ${value}`,
+  valueIsNewDataVal: (value) => `newData.val() === ${value}`,
+
+  /**
    * Exists
    */
 
@@ -27,8 +36,29 @@ module.exports = {
    * Strings
    */
 
-  dataIsString: 'data.val().isString()',
-  newDataIsString: 'newData.val().isString()',
+  dataIsString: 'data.isString()',
+  newDataIsString: 'newData.isString()',
+
+  /**
+   * Numbers
+   */
+
+  dataIsNumber: 'data.isNumber()',
+  newDataNumber: 'newData.isNumber()',
+
+  /**
+   * Booleans
+   */
+
+  dataIsBoolean: 'data.isBoolean()',
+  newDataIsBoolean: 'newData.isBoolean()',
+
+  /**
+   * Numbers
+   */
+
+  dataIsNumber: 'data.isNumber()',
+  newDataIsNumber: 'newData.isNumber()',
 
   /**
    * Children
