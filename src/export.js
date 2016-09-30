@@ -11,5 +11,5 @@ jsonfile.spaces = 2;
 
 module.exports = function exportRules(rules, path = 'database.rules.json') {
   if (rules.constructor === Array) { rules = mergeRules(rules); }
-  return jsonfile.writeFile(path, { rules });
+  return jsonfile.writeFileSync(path, { rules });
 }
