@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/tasking/firebase-rules#readme",
   "dependencies": {
-    "jsonfile": "^2.4.0"
+    "jsonfile-promised": "0.0.1"
   }
 }
