@@ -1,4 +1,4 @@
-const { anyCondition, everyConditions, conditional } = require('./src/conditions');
+const { anyCondition, everyConditions, ifCondition } = require('./src/conditions');
 const { createRules, mergeRules } = require('./src/rules');
 const exportRules = require('./src/export');
 
@@ -8,5 +8,5 @@ module.exports = {
   createRules,
   mergeRules,
   exportRules,
-  conditional
+  ifCondition
 };

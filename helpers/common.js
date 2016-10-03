@@ -17,10 +17,10 @@ module.exports = {
    * Val
    */
   
-  dataVal: 'data.val()',
-  newDataVal: 'newData.val()',
-  valueIsDataVal: (value) => `data.val() === ${value}`,
-  valueIsNewDataVal: (value) => `newData.val() === ${value}`,
+  data: 'data.val()',
+  newData: 'newData.val()',
+  valueIsData: (value) => `data.val() === ${value}`,
+  valueIsNewData: (value) => `newData.val() === ${value}`,
 
   /**
    * Exists

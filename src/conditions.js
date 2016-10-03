@@ -1,8 +1,8 @@
 const mergeConditions = require('./_utils/mergeConditions');
-const conditional = require('./_utils/conditional');
+const ifCondition = require('./_utils/ifCondition');
 
 module.exports = {
   anyCondition: mergeConditions(' || '),
   everyConditions: mergeConditions(' && '),
-  conditional: conditional
+  ifCondition: ifCondition
 };
