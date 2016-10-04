@@ -26,7 +26,7 @@ module.exports = function buildPath(targetObj, path, values, pathArr, curPathIdx
     
     if (valueKeyRules.indexOf(relativeRootStr) !== -1) {
       const relativeRoot = getRelativeRoot(curPathIdx);
-      pathObj[finalValueKey] = valueKeyRules.replace(relativeRootStr, relativeRoot);
+      pathObj[finalValueKey] = valueKeyRules.replace(new RegExp(relativeRootStr, 'g'), relativeRoot);
     } else {
       pathObj[finalValueKey] = valueKeyRules;
     }
