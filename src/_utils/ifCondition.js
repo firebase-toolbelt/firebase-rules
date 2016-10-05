@@ -1,5 +1,8 @@
-module.exports = function ifCondition(condition, allowedConditionAction, deniedConditionAction) {
-  const args = Array.from(arguments);
-  if (args.length < 2) { throw new Error('firebase-rules: ifCondition must receive three condition.') }
-  return `((${condition}) ? ${allowedConditionAction} : ${deniedConditionAction || false})`;
+
+module.exports = function if(condition, trueOperation, elseOperation) {
+  if (!condition || !trueOperation) {
+    throw new Error('firebase-rules: ifCondition must receive at least a condition and a operation.');
+  } else {
+    return `(${condition}) ? (${trueOperation}) : (${elseOperation || false})`;
+  }
 };
