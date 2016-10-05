@@ -13,7 +13,7 @@ module.exports = {
    */
 
   isAuth: 'auth.uid != null',
-  valueIsAuthUserId: (value) => `auth.uid == ${value}`,
+  valueIsAuthId: (value) => `auth.uid == ${value}`,
 
   /**
    * Value
