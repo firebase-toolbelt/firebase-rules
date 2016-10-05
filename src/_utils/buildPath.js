@@ -1,3 +1,10 @@
+/**
+ *
+ * Construct valid json rules object based on passed object.
+ * It also uses adds the functionality to use `newDataRoot().` as a variable.
+ * 
+ */
+
 const validRulesKeys = require('../_constants/validRulesKeys');
 const getRelativeRoot = require('./getRelativeRoot');
 

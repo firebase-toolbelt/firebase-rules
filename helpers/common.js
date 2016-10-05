@@ -1,8 +1,10 @@
 /**
+ * 
  * Common firebase rules
+ * 
  */
 
-const jsonArr = require('./jsonArr');
+const jsonArr = require('../src/_utils/jsonArr');
 
 module.exports = {
 
@@ -10,27 +12,27 @@ module.exports = {
    * Auth
    */
 
-  isAuth: 'auth.uid !== null',
-  valueIsAuthUserId: (value) => `auth.uid === ${value}`,
+  isAuth: 'auth.uid != null',
+  valueIsAuthUserId: (value) => `auth.uid == ${value}`,
 
   /**
-   * Val
+   * Value
    */
   
   data: 'data.val()',
   newData: 'newData.val()',
-  valueIsData: (value) => `data.val() === ${value}`,
-  valueIsNewData: (value) => `newData.val() === ${value}`,
+  valueIsData: (value) => `data.val() == ${value}`,
+  valueIsNewData: (value) => `newData.val() == ${value}`,
 
   /**
    * Exists
    */
 
-  newDataExists: 'newData.val() !== null',
-  newDataDoesNotExists: 'newData.val() === null',
+  newDataExists: 'newData.val() != null',
+  newDataDoesNotExists: 'newData.val() == null',
 
-  dataExists: 'data.val() !== null',
-  dataDoesNotExists: 'data.val() === null',
+  dataExists: 'data.val() != null',
+  dataDoesNotExists: 'data.val() == null',
 
   /**
    * Strings
@@ -64,6 +66,7 @@ module.exports = {
    * Children
    */
 
+  hasChildren: (children) => `hasChildren(${jsonArr(children)})`,
   dataHasChildren: (children) => `data.hasChildren(${jsonArr(children)})`,
   newDataHasChildren: (children) => `newData.hasChildren(${jsonArr(children)})`,
 
