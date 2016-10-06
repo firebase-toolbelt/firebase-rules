@@ -70,4 +70,11 @@ module.exports = {
   dataHasChildren: (children) => `data.hasChildren(${jsonArr(children)})`,
   newDataHasChildren: (children) => `newData.hasChildren(${jsonArr(children)})`,
 
+  /**
+   * NewData
+   */
+  
+  toNewData: (condition) => condition.replace(/data./g, 'newData.'),
+  toNewRoot: (condition) => condition.replace(/root./g, 'newDataRoot().'),
+
 };
