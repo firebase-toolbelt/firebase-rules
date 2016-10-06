@@ -5,6 +5,7 @@
  */
 
 const jsonArr = require('../src/_utils/jsonArr');
+const curriedReplace = require('../src/_utils/curriedReplace');
 
 module.exports = {
 
@@ -74,7 +75,7 @@ module.exports = {
    * NewData
    */
   
-  toNewData: (condition) => condition.replace(/data./g, 'newData.'),
-  toNewRoot: (condition) => condition.replace(/root./g, 'newDataRoot().'),
+  toNewData: curriedReplace(condition, /data./g, 'newData.'),
+  toNewRoot: curriedReplace(condition, /root./g, 'newDataRoot().'),
 
 };
