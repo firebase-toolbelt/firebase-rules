@@ -75,7 +75,7 @@ module.exports = {
    * NewData
    */
   
-  toNewData: curriedReplace(condition, /data./g, 'newData.'),
-  toNewRoot: curriedReplace(condition, /root./g, 'newDataRoot().'),
+  toNewData: curriedReplace(/data./g, 'newData.'),
+  toNewRoot: curriedReplace(/root./g, 'newDataRoot().'),
 
 };
