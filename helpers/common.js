@@ -47,7 +47,7 @@ module.exports = {
    */
 
   dataIsNumber: 'data.isNumber()',
-  newDataNumber: 'newData.isNumber()',
+  newDataIsNumber: 'newData.isNumber()',
 
   /**
    * Booleans
