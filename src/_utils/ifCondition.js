@@ -20,6 +20,6 @@ module.exports = function ifCondition(condition, trueOperation, elseOperation) {
   } else if (Array.from(arguments).length > 3) {
     throw new Error('firebase-rules: ifCondition is receiving too many arguments.');
   } else {
-    return `(${condition}) ? (${trueOperation}) : (${elseOperation || false})`;
+    return `((${condition}) ? (${trueOperation}) : (${elseOperation || false}))`;
   }
 };
