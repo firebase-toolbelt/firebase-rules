@@ -48,6 +48,8 @@ module.exports = {
 
   dataIsNumber: 'data.isNumber()',
   newDataNumber: 'newData.isNumber()',
+  dataIsInteger: 'data.val().matches(/^-?\d+$/)',
+  newDataIsInteger: 'newData.val().matches(/^-?\d+$/)',
 
   /**
    * Booleans
