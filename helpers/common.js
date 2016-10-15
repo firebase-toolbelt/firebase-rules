@@ -59,13 +59,6 @@ module.exports = {
   newDataIsBoolean: 'newData.isBoolean()',
 
   /**
-   * Numbers
-   */
-
-  dataIsNumber: 'data.isNumber()',
-  newDataIsNumber: 'newData.isNumber()',
-
-  /**
    * Children
    */
 
