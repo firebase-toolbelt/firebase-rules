@@ -12,7 +12,7 @@
     "url": "git+https://github.com/tasking/firebase-rules.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/tasking/firebase-rules/issues"
   },
