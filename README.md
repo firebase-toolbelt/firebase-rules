@@ -48,7 +48,7 @@ No users are ever removed from our app.
 // ./rules/modules/users.js
 
 const { createRules } = require('firebase-rules');
-const { isAuth, valueIsAuthUserId, newDataIsString } = require('firebase-rules/helpers/common');
+const { isAuth, valueIsAuthUserId, newDataIsString, validate } = require('firebase-rules/helpers/common');
 const { ifCondition } = require('firebase-rules/helpers/conditions');
 
 const isUserAndIsNotRemoving = ifCondition(
@@ -63,12 +63,8 @@ const userRules = createRules({
     write: isUserAndIsNotRemoving,
     validate: newDataHasChildren(['firstName'])
   },
-  'users/$userId/firstName': {
-    validate: newDataIsString
-  },
-  'users/$userId/$invalidProp': {
-    validate: false
-  }
+  'users/$userId/firstName': validate(newDataIsString),
+  'users/$userId/$invalidProp': validate(false)
 });
 
 module.exports = userRules;
@@ -82,11 +78,7 @@ Posts can be read by any of our app's users.
 // ./rules/modules/posts.js
 
 const { createRules } = require('firebase-rules');
-const { isAuth, valueIsAuthUserId, newDataIsString, newDataIsNow } = require('firebase-rules/helpers/common');
-
-const postStringPropRules = {
-  validate: newDataIsString
-};
+const { isAuth, valueIsAuthUserId, newDataIsString, newDataIsNow, validate } = require('firebase-rules/helpers/common');
 
 const postRules = createRules({
   'posts/$postId': {
@@ -94,11 +86,11 @@ const postRules = createRules({
     write: valueIsAuthUserId(newDataProp('createdBy')),
     validate: newDataHasChildren(['title', 'body', 'createdAt', 'createdBy'])
   },
-  'posts/$postId/title': newDataIsString,
-  'posts/$postId/body': newDataIsString,
-  'posts/$postId/createdAt': newDataIsNow,
-  'posts/$postId/createdBy': valueIsAuthUserId(newData),
-  'posts/$postId/$invalidProp': false
+  'posts/$postId/title': validate(newDataIsString),
+  'posts/$postId/body': validate(newDataIsString),
+  'posts/$postId/createdAt': validate(newDataIsNow),
+  'posts/$postId/createdBy': validate(valueIsAuthUserId(newData)),
+  'posts/$postId/$invalidProp': validate(false)
 });
 
 module.exports = userRules;
