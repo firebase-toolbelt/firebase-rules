@@ -1,6 +1,6 @@
 {
   "name": "firebase-rules",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "create your firebase rules modularly using javascript",
   "homepage": "https://github.com/tasking/firebase-rules",
   "author": "Georges Boris",
