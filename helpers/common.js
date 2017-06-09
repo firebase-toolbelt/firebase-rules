@@ -72,6 +72,12 @@ module.exports = {
   hasChildren: (children) => `hasChildren(${jsonArr(children)})`,
   dataHasChildren: (children) => `data.hasChildren(${jsonArr(children)})`,
   newDataHasChildren: (children) => `newData.hasChildren(${jsonArr(children)})`,
+  
+  /**
+   * Validate Short-hand
+   */
+  
+  validate: (condition) => ({ validate: condition }),
 
   /**
    * NewData
