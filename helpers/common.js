@@ -57,6 +57,13 @@ module.exports = {
 
   dataIsBoolean: 'data.isBoolean()',
   newDataIsBoolean: 'newData.isBoolean()',
+  
+  /**
+   * Time
+   */
+  
+  dataIsNow: 'data.val() == now',
+  newDataIsNow: 'data.val() == now',
 
   /**
    * Children
