@@ -5,9 +5,6 @@
 ## Table of Contents
 
 [Getting Started](#getting-started)
-
-[Helpers](#helpers)
-
 [Helpers](#helpers)
 - [Accessing new data root](#accessing-new-data-root)
 - [Conditions](#conditions)
