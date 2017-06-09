@@ -1,8 +1,20 @@
 # firebase-rules
 
-Make your Firebase database rules readable and scalable. Using only javascript.
+> Make your Firebase database rules readable and scalable. Using only javascript.
 
-## Quick start
+## Table of Contents
+
+[Getting Started](#getting-started)
+
+[Helpers](#helpers)
+
+[Helpers](#helpers)
+- [Accessing new data root](#accessing-new-data-root)
+- [Conditions](#conditions)
+- [CRUD](#crud)
+- [Common](#common)(docs incomplete)
+
+## Getting Started
 
 The best way to understand how it works it's just by following this quick demo.
 Let's create some rules for an app that users can create their own 'user' object and then they can create/update their own posts.
@@ -115,6 +127,8 @@ We can now upload our app to Firebase using their CLI or even upload our file ma
 
 We include many helpers that are commonly used when building a firebase ruleset.
 They are divided into **conditions**, **crud** and **common** helpers.
+
+### Accessing new data root
 
 Apart from that, we also provide a quick way for you to access the `root` path even when dealing with `newData`.
 All you have to do is use the `newDataRoot()` string inside your conditions.
