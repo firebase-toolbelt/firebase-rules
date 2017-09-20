@@ -10,7 +10,7 @@
 - [Accessing new data root](#accessing-new-data-root)
 - [Conditions](#conditions)
 - [CRUD](#crud)
-- [Common](#common)(docs incomplete)
+- [Common](#common)
 
 ## Getting Started
 
