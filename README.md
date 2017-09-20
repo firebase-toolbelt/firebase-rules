@@ -210,9 +210,8 @@ data
 isData(any)
 dataExists
 dataIsEmpty
-
 newData
-isData(any)
+isNewData(any)
 newDataExists
 newDataIsEmpty
 
