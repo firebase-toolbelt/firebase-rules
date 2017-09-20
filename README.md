@@ -260,6 +260,23 @@ posts/$postId/createdAt: validate(isNow)
 posts/$postId/createdBy: validate(isAuthId(newData))
 ```
 
+
+**user defined strings**
+
+```
+s('something') // '\'something\''
+```
+
+Since we're dealing with an object that will be turned to a json, sometimes it's useful escaping user defined strings so they're not mistaken for variables by the firebase rules parser. This is normally used when passing a user defined string to a function like so:
+
+```javascript
+const userExists = userId => `root.child('users').child(${userId}).exists()`;
+
+userName('$userId') // `root.child('users').child($userId).exists()`
+userName('123')    // `root.child('users').child(123).exists()` -> ERROR -> `123` is not a valid variable
+userName(s(123))   // `root.child('users').child('123').exists()`
+```
+
 **transformers**
 
 ```
@@ -279,7 +296,6 @@ userWillExist('$userId') // newDataRoot().child(newData.child('createdBy').val()
 ```
 
 See the `newDataRoot()` that appears on the output above? Read below to understand it better.
-
 
 ### New Data Root
 

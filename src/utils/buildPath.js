@@ -5,7 +5,7 @@
  * 
  */
 
-const validRulesKeys = require('../_constants/validRulesKeys');
+const validRulesKeys = require('../constants/validRulesKeys');
 const getRelativeRoot = require('./getRelativeRoot');
 
 module.exports = function buildPath(targetObj, path, values, pathArr, curPathIdx, pathObj) {

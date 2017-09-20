@@ -2,8 +2,8 @@
  * Utils
  */
 
-const liftedReplace = require('../src/_utils/liftedReplace');
-const jsonArr = require('../src/_utils/jsonArr');
+const liftedReplace = require('../src/utils/liftedReplace');
+const jsonArr = require('../src/utils/jsonArr');
 
 /**
  * JSON String helpers
