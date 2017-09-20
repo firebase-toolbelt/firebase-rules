@@ -202,10 +202,15 @@ Not that `onDelete` is not called on `validate` rules since firebase bypasses va
 We also provide a lot of common snippets so you won't have to redo the basics.
 
 **auth**
+
+```
 isAuth
 isAuthId(any)
+```
 
 **data**
+
+```
 data
 isData(any)
 dataExists
@@ -214,24 +219,37 @@ newData
 isNewData(any)
 newDataExists
 newDataIsEmpty
+```
 
 **props**
-prop *or* child
-newProp *or* newChild
-hasProp([]) *or* hasChildren([])
+
+```
+prop | child
+newProp | newChild
+hasProp([]) | hasChildren([])
+```
 
 **validation**
+
+```
 isString
 isNumber
 isInteger
 isBoolean
 isNow
+```
 
 **validate**
+
+```
 validate(conditions)
+```
 
 **transformers**
-toData(string *or* function)
-toNewData(string *or* function)
-toRoot(string *or* function)
-toNewRoot(string *or* function)
+
+```
+toData(string | function)
+toNewData(string | function)
+toRoot(string | function)
+toNewRoot(string | function)
+```
