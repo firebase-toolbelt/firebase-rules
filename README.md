@@ -7,10 +7,10 @@
 [Getting Started](#getting-started)
 
 [Helpers](#helpers)
-- [Accessing new data root](#accessing-new-data-root)
 - [Conditions](#conditions)
 - [CRUD](#crud)
 - [Common](#common)
+- [New Data Root](#new-data-root)
 
 ## Getting Started
 
