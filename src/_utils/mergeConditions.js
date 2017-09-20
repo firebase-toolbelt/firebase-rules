@@ -24,10 +24,6 @@ module.exports = function mergeConditions(separator) {
         'firebase-rules: mergeConditions must receive at least one condition.'
       );
     }
-    return args.reduce((acc, condition, index) => {
-      return index < args.length - 1
-        ? acc + `(${condition}) ${separator} `
-        : acc + `(${condition})`;
-    }, '');
+    return `((${args.join(`) ${separator} (`)}))`;
   };
 };

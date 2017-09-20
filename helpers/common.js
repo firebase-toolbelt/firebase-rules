@@ -2,29 +2,24 @@
  * Utils
  */
 
-const replace = require('lodash/fp/replace');
-const lift = require('../src/_utils/liftFunction');
+const liftedReplace = require('../src/_utils/liftedReplace');
 const jsonArr = require('../src/_utils/jsonArr');
 
-function lReplace(substr, newSubstr) {
-  return lift(replace(substr, newSubstr));
-}
+/**
+ * JSON String helpers
+ */
+
+exports.s = (x) => `\'${x}\'`;
 
 /**
  * Transformers
  */
 
-const toData = lReplace('newData.', 'data.');
-const toNewData = lReplace('data.', 'newData.');
-
-const toRoot = lReplace('newDataRoot().', 'data.');
-const toNewRoot = lReplace('root.', 'newDataRoot().');
+const toData = liftedReplace([['newData.', 'data.'], ['newDataRoot().', 'root.']]);
+const toNewData = liftedReplace([['data.', 'newData.'], ['root.', 'newDataRoot().']]);
 
 exports.toData = toData;
 exports.toNewData = toNewData;
-
-exports.toRoot = toRoot;
-exports.toNewRoot = toNewRoot;
 
 /**
  * Auth

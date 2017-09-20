@@ -7,7 +7,8 @@
   "license": "BSD-2-Clause",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "jest": "^21.1.0"
+    "jest": "^21.1.0",
+    "targaryen": "^3.0.2"
   }
 }
