@@ -1,89 +1,88 @@
 /**
- * 
- * Common firebase rules
- * 
+ * Utils
  */
 
+const replace = require('lodash/fp/replace');
+const lift = require('../src/_utils/liftFunction');
 const jsonArr = require('../src/_utils/jsonArr');
-const curriedReplace = require('../src/_utils/curriedReplace');
 
-module.exports = {
+function lReplace(substr, newSubstr) {
+  return lift(replace(substr, newSubstr));
+}
 
-  /**
-   * Auth
-   */
+/**
+ * Transformers
+ */
 
-  isAuth: 'auth.uid != null',
-  valueIsAuthId: (value) => `auth.uid == ${value}`,
+const toData = lReplace('newData.', 'data.');
+const toNewData = lReplace('data.', 'newData.');
 
-  /**
-   * Value
-   */
-  
-  data: 'data.val()',
-  newData: 'newData.val()',
-  valueIsData: (value) => `data.val() == ${value}`,
-  valueIsNewData: (value) => `newData.val() == ${value}`,
+const toRoot = lReplace('newDataRoot().', 'data.');
+const toNewRoot = lReplace('root.', 'newDataRoot().');
 
-  /**
-   * Exists
-   */
+exports.toData = toData;
+exports.toNewData = toNewData;
 
-  newDataExists: 'newData.val() != null',
-  newDataDoesNotExists: 'newData.val() == null',
+exports.toRoot = toRoot;
+exports.toNewRoot = toNewRoot;
 
-  dataExists: 'data.val() != null',
-  dataDoesNotExists: 'data.val() == null',
+/**
+ * Auth
+ */
 
-  /**
-   * Strings
-   */
+exports.isAuth = 'auth.uid != null';
+exports.isAuthId = value => `auth.uid == ${value}`;
 
-  dataIsString: 'data.isString()',
-  newDataIsString: 'newData.isString()',
+/**
+ * Data
+ */
 
-  /**
-   * Numbers
-   */
+const data = 'data.val()';
+const isData = value => `data.val() == ${value}`;
 
-  dataIsNumber: 'data.isNumber()',
-  newDataNumber: 'newData.isNumber()',
-  dataIsInteger: 'data.val().matches(/^-?\d+$/)',
-  newDataIsInteger: 'newData.val().matches(/^-?\d+$/)',
+const dataExists = 'data.val() != null';
+const dataIsEmpty = 'data.val() == null';
 
-  /**
-   * Booleans
-   */
+exports.data = data;
+exports.isData = isData;
+exports.dataExists = dataExists;
+exports.dataIsEmpty = dataIsEmpty;
 
-  dataIsBoolean: 'data.isBoolean()',
-  newDataIsBoolean: 'newData.isBoolean()',
-  
-  /**
-   * Time
-   */
-  
-  dataIsNow: 'data.val() == now',
-  newDataIsNow: 'data.val() == now',
+exports.newData = toNewData(data);
+exports.isNewData = toNewData(isData);
+exports.newDataExists = toNewData(dataExists);
+exports.newDataIsEmpty = toNewData(dataIsEmpty);
 
-  /**
-   * Children
-   */
+/**
+ * Props / Children
+ */
 
-  hasChildren: (children) => `hasChildren(${jsonArr(children)})`,
-  dataHasChildren: (children) => `data.hasChildren(${jsonArr(children)})`,
-  newDataHasChildren: (children) => `newData.hasChildren(${jsonArr(children)})`,
-  
-  /**
-   * Validate Short-hand
-   */
-  
-  validate: (condition) => ({ validate: condition }),
+const prop = propName => `data.child(\'${propName}\'`;
+const newProp = toNewData(prop);
 
-  /**
-   * NewData
-   */
-  
-  toNewData: curriedReplace(/data./g, 'newData.'),
-  toNewRoot: curriedReplace(/root./g, 'newDataRoot().'),
+exports.prop = prop;
+exports.child = prop;
 
-};
+exports.newProp = newProp;
+exports.newChild = newProp;
+
+const hasProps = children => `newData.hasChildren(${jsonArr(children)})`;
+
+exports.hasProps = hasProps;
+exports.hasChildren = hasProps;
+
+/**
+ * Validation
+ */
+
+exports.isString = 'newData.isString()';
+exports.isNumber = 'newData.isNumber()';
+exports.isInteger = 'newData.val().matches(/^-?d+$/)';
+exports.isBoolean = 'newData.isBoolean()';
+exports.isNow = 'newData.val() == now';
+
+/**
+ * Validate Short-hand
+ */
+
+exports.validate = condition => ({ validate: condition });

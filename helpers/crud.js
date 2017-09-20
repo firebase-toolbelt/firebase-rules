@@ -1,3 +1,7 @@
+/**
+ * Increased readibility for common lifetime conditions.
+ */
+
 const { dataDoesNotExists, dataExists, newDataExists, newDataDoesNotExists } = require('./common');
 const { everyConditions } = require('./conditions');
 

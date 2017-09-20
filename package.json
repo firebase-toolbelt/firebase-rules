@@ -1,11 +1,14 @@
 {
   "name": "firebase-rules",
   "version": "1.0.1",
-  "description": "create your firebase rules modularly using javascript",
+  "description": "Composable firebase rules using plain javascript.",
   "homepage": "https://github.com/tasking/firebase-rules",
   "author": "Georges Boris",
   "license": "BSD-2-Clause",
-  "main": "test.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tasking/firebase-rules.git"
@@ -14,6 +17,10 @@
     "url": "https://github.com/tasking/firebase-rules/issues"
   },
   "dependencies": {
-    "jsonfile-promised": "0.0.1"
+    "jsonfile-promised": "0.0.1",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "jest": "^21.1.0"
   }
 }

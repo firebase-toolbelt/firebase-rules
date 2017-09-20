@@ -1,7 +1,5 @@
 /**
- * 
- * Increasing readability of common condition wrappers.
- * 
+ * Increased readibility for common conditional operators.
  */
 
 const mergeConditions = require('../src/_utils/mergeConditions');
@@ -9,6 +7,6 @@ const ifCondition = require('../src/_utils/ifCondition');
 
 module.exports = {
   ifCondition: ifCondition,
-  anyCondition: mergeConditions(' || '),
-  everyConditions: mergeConditions(' && ')
+  anyCondition: mergeConditions('||'),
+  everyCondition: mergeConditions('&&')
 };

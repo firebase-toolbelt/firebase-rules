@@ -16,7 +16,7 @@ module.exports = function jsonArr(arr, showEmpty, throwError) {
   
   if (!arr || !arr.length) {
     if (throwError) {
-      throw new Error('arrToJson - must receive an array with at least one item.');
+      throw new Error('firebase-rules: arrToJson - must receive an array with at least one item.');
       return '';
     } else {
       return (showEmpty) ? "[]" : "";
