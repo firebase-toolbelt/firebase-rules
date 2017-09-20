@@ -318,17 +318,15 @@ Messy, right? Not only that, you won't be able to reuse any rule throughout your
 
 Fear not. We've got your back. While we're parsing your rules, we will check for a special keyword `newDataRoot()` and we will replace it with the correct code regarding the path you're using it. Let's see it in action.
 
-```coffeescript
+```javascript
 const numberOfPosts = userId => `newDataRoot().child('posts').child(${userId}).numChildren()`;
 
 users/$userId
-  validate: `${numberOfPosts('$userId')} == newData.child('numberOfPosts').val()'  
-
+  validate: `${numberOfPosts('$userId')} == newData.child('numberOfPosts').val()'
 // 'newData.parent().child('posts').child('$userId').numChildren() == newData.val()'
 
 users/$userId/numberOfPosts:
   validate: `${numberOfPosts('$userId')} == newData.val()'
-  
 // 'newData.parent().parent().child('posts').child('$userId').numChildren() == newData.val()'
 
 ```
