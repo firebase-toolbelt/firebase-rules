@@ -309,11 +309,14 @@ const numberOfPosts = userId => `newDataRoot().child('posts').child(${userId}).n
 
 users/$userId
   validate: `${numberOfPosts('$userId')} == newData.child('numberOfPosts').val()'  
+
 // 'newData.parent().child('posts').child('$userId').numChildren() == newData.val()'
 
 users/$userId/numberOfPosts:
   validate: `${numberOfPosts('$userId')} == newData.val()'
+  
 // 'newData.parent().parent().child('posts').child('$userId').numChildren() == newData.val()'
+
 ```
 
 This is *really* useful when you're creating data on multiple locations that depend on each other.
