@@ -177,7 +177,7 @@ Any of the passed conditions must be true for the rule to be accepted.
 **It might also receive an array instead of a list of arguments**.
 
 ```
-anyCondition(
+everyCondition(
   thisMustBeTrue,
   AND_thisTooMustBeTrue,
   AND_thisMustAlsoBeTrue,
@@ -199,38 +199,40 @@ Not that `onDelete` is not called on `validate` rules since firebase bypasses va
 
 ### Common
 
-We also provide a lot of common snippets so you won't have to redo the basics everytime.
+We also provide a lot of common snippets so you won't have to redo the basics.
 
-| **helper** | **example** | **output** |
-|---------------|---------------------------------|------------------------------------|
-|  |  |  |
-| isAuth | read: isAuth | '.read': 'auth.uid != null' |
-| valueIsAuthId | write: valueIsAuthId('$userId') | '.write': 'auth.uid == $userId' |
-|  |  |  |
-| data | write: valueIsAuthId(data) | '.write': 'auth.uid == data.val()' |
-| dataExists | write: dataExists | '.write': 'data.val() != null' |
-| valueIsData | read: valueIsData('$userId') | '.read': 'data.val() == $userId' |
-|  |  |  |
-| newData | write: newValueIsAuthId(data) | '.write': 'auth.uid == newData.val()' |
-| newDataExists | write: newDataExists | '.write': 'newData.val() != null' |
-| valueIsNewData | read: valueIsNewData('$userId') | '.read': 'newData.val() == $userId' |
-|  |  |  |
-| dataIsString | validate: dataIsString | '.validate': 'data.isString()' |
-| newDataIsString | validate: newDataIsString | '.validate': 'newData.isString()' |
-|  |  |  |
-| dataIsNumber | validate: dataIsNumber | '.validate': 'data.isNumber()' |
-| newDataIsNumber | validate: newDataIsNumber | '.validate': 'newData.isNumber()' |
-|  |  |  |
-| dataIsInteger | validate: dataIsInteger | '.validate': 'data.matches(/^-?\d+$/)' |
-| newDataIsInteger | validate: newDataIsInteger | '.validate': 'newData.matches(/^-?\d+$/)' |
-|  |  |  |
-| dataIsBoolean | validate: dataIsBoolean | '.validate': 'data.isBoolean()' |
-| newDataIsBoolean | validate: newDataIsBoolean | '.validate': 'newData.isBoolean()' |
-|  |  |  |
-| dataIsNow | validate: dataIsNow | '.validate': 'data.val() == now' |
-| newDataIsNow | validate: newDataIsNow | '.validate': 'newData.val() == now' |
-|  |  |  |
-| hasChildren | validate: 'data.' + hasChildren(['a', 'b']) | '.validate': 'data.hasChildren([\'a\', \'b\'])' |
-| dataHasChildren |  validate: dataHasChildren(['a', 'b']) | '.validate': 'data.hasChildren([\'a\', \'b\'])' |
-| newDataHasChildren |  validate: newDataHasChildren(['a', 'b']) | '.validate': 'newData.hasChildren([\'a\', \'b\'])' |
-|  |  |  |
+**auth**
+isAuth
+isAuthId(any)
+
+**data**
+data
+isData(any)
+dataExists
+dataIsEmpty
+
+newData
+isData(any)
+newDataExists
+newDataIsEmpty
+
+**props**
+prop *or* child
+newProp *or* newChild
+hasProp([]) *or* hasChildren([])
+
+**validation**
+isString
+isNumber
+isInteger
+isBoolean
+isNow
+
+**validate**
+validate(conditions)
+
+**transformers**
+toData(string *or* function)
+toNewData(string *or* function)
+toRoot(string *or* function)
+toNewRoot(string *or* function)
