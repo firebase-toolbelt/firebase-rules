@@ -267,7 +267,7 @@ toData(string | function)
 toNewData(string | function)
 ```
 
-There will be a time when you want to duplicate a rule so it checks both data and newData.
+There will be a time you will want to duplicate a rule so it checks both data and newData.
 This transformers will help you building code without having to duplicate it in these situations.
 
 ```
@@ -300,7 +300,7 @@ users/$userId/numberOfPosts:
   validate: 'newData.parent().parent().child('posts').child('$userId').numChildren() == newData.val()'
 ```
 
-Ugly as can be, right? Not only that you can't really reuse any rule throughout your application because things may be at different depths, so they will require a different number of `parent()` to be called.
+Messy, right? Not only that, you won't be able to reuse any rule throughout your application because things may be at different depths, so they will require a different number of `parent()` to be called.
 
 Fear not. We've got your back. While we're parsing your rules, we will check for a special keyword `newDataRoot()` and we will replace it with the correct code regarding the path you're using it. Let's see it in action.
 
