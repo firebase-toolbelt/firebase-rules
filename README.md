@@ -318,4 +318,6 @@ users/$userId/numberOfPosts:
 
 This is *really* useful when you're creating data on multiple locations that depend on each other.
 
-*Created by Georges Boris @ [Tasking](keeptasking.com)*
+---
+
+Created by Georges Boris @ [Tasking](keeptasking.com)
