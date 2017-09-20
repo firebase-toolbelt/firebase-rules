@@ -19,24 +19,22 @@ Let's create some rules for an app that let users create their own 'user' object
 
 The database should look something like this:
 
-```
-// database
+```json
 {
-  users: {
-    $userId: {
-      firstName: 'John'
+  "users": {
+    "$userId": {
+      "firstName": "John"
     }
   },
-  posts: {
-    $postId: {
-      title: 'My post title.',
-      body: 'My post body.',
-      createdAt: timestamp,
-      createdBy: '$userId'
+  "posts": {
+    "$postId": {
+      "title": "My post title.",
+      "body": "My post body.",
+      "createdAt": "timestamp",
+      "createdBy": "$userId"
     }
   }
 }
-
 ```
 
 Let's first create our rules related to the user object.
@@ -130,7 +128,7 @@ It works much like a ternary operator.
 
 If the third condition is not provided, it defaults to 'false'.
 
-```
+```javascript
 ifCondition(
   ifUserIsAuth,
   alsoCheckIfHeIsValid,
@@ -143,7 +141,7 @@ ifCondition(
 Any of the passed conditions must be true for the rule to be accepted.
 **It might also receive an array instead of a list of arguments**.
 
-```
+```javascript
 anyCondition(
   thisMustBeTrue,
   OR_thisMustBeTrue,
@@ -157,7 +155,7 @@ anyCondition(
 Any of the passed conditions must be true for the rule to be accepted.
 **It might also receive an array instead of a list of arguments**.
 
-```
+```javascript
 everyCondition(
   thisMustBeTrue,
   AND_thisTooMustBeTrue,
@@ -170,7 +168,7 @@ everyCondition(
 
 Our CRUD helpers makes it easy to check for different rules in case of create/update/delete situations.
 
-```
+```javascript
 onCreate( checkIfAllChildrenArePresent ),
 onUpdate( checkIfNoRequiredChildrenAreRemoved ),
 onDelete( checkIfUserCanDeleteThis )
@@ -184,14 +182,14 @@ We also provide a lot of common snippets so you won't have to redo the basics.
 
 **auth**
 
-```
+```javascript
 isAuth
 isAuthId(any)
 ```
 
 e.g. any authenticated user can read any post but only the owner can update it.
 
-```
+```javascript
 'posts/$userId/$postId':
   read: isAuth                // 'auth.uid != null',
   write: isAuthId('$userId')  // 'auth.uid == $userId'
@@ -199,7 +197,7 @@ e.g. any authenticated user can read any post but only the owner can update it.
 
 **data**
 
-```
+```javascript
 data
 isData(any)
 dataExists
@@ -213,7 +211,7 @@ newDataIsEmpty
 
 e.g. the path can only be created but not updated
 
-```
+```javascript
 $path:
   write: everyCondition( dataIsEmpty, newDataExists )
   // data.val() == null && newData.val() != null
@@ -229,7 +227,7 @@ hasProp([]) | hasChildren([])
 
 e.g. a post can only be created with all required fields filled. the createdBy must hold the userId
 
-```
+```javascript
 post:
   write: everyCondition(
     hasChildren(['title', 'body', 'createdBy']),
@@ -240,7 +238,7 @@ post:
 
 **validation**
 
-```
+```javascript
 validate(conditions)
 
 isString
@@ -252,7 +250,7 @@ isNow
 
 A lot of paths will only hold validation rules so there's a short-hand function that helps with that.
 
-```
+```javascript
 posts/$postId/title:     validate(isString)
 posts/$postId/likes:     validate(isNumber)
 posts/$postId/archived:  validate(isBoolean)
@@ -263,7 +261,7 @@ posts/$postId/createdBy: validate(isAuthId(newData))
 
 **user defined strings**
 
-```
+```javascript
 s('something') // '\'something\''
 ```
 
@@ -279,7 +277,7 @@ userName(s(123))   // `root.child('users').child('123').exists()`
 
 **transformers**
 
-```
+```javascript
 toData(string | function)
 toNewData(string | function)
 ```
@@ -287,7 +285,7 @@ toNewData(string | function)
 There will be a time you will want to duplicate a rule so it checks both data and newData.
 This transformers will help you building code without having to duplicate it in these situations.
 
-```
+```javascript
 const userExists = (userId) => `root.child('users').child(${userId}).exists()`;
 const userWillExist = toNewData(userExists);
 
@@ -304,14 +302,14 @@ This can be a bit of a pain when you're defining reusable rules that will be use
 
 Let me show you what I mean.
 
-```
+```javascript
 users/$userId/numberOfPosts:
   validate: 'root.child('posts').child('$userId').numChildren() == newData.val()'
 ```
 
 The above code would work perfectly if you are increasing the `user/numberOfPosts` prop *after* you've already created the post on the database. But if you're creating the post at the same time you're updating this counter it would not really work. `root` can't be used in the context of the data that is being added. To solve this you would have to do something like this:
 
-```
+```javascript
 users/$userId/numberOfPosts:
   validate: 'newData.parent().parent().child('posts').child('$userId').numChildren() == newData.val()'
 ```
@@ -320,7 +318,7 @@ Messy, right? Not only that, you won't be able to reuse any rule throughout your
 
 Fear not. We've got your back. While we're parsing your rules, we will check for a special keyword `newDataRoot()` and we will replace it with the correct code regarding the path you're using it. Let's see it in action.
 
-```
+```javascript
 const numberOfPosts = userId => `newDataRoot().child('posts').child(${userId}).numChildren()`;
 
 users/$userId
