@@ -271,8 +271,8 @@ Since we're dealing with an object that will be turned to a json, sometimes it's
 const userExists = userId => `root.child('users').child(${userId}).exists()`;
 
 userName('$userId') // `root.child('users').child($userId).exists()`
-userName('123')    // `root.child('users').child(123).exists()` -> ERROR -> `123` is not a valid variable
-userName(s(123))   // `root.child('users').child('123').exists()`
+userName('123')     // `root.child('users').child(123).exists()` -> ERROR -> `123` is not a valid variable
+userName(s(123))    // `root.child('users').child('123').exists()`
 ```
 
 **transformers**
@@ -318,7 +318,7 @@ Messy, right? Not only that, you won't be able to reuse any rule throughout your
 
 Fear not. We've got your back. While we're parsing your rules, we will check for a special keyword `newDataRoot()` and we will replace it with the correct code regarding the path you're using it. Let's see it in action.
 
-```javascript
+```coffeescript
 const numberOfPosts = userId => `newDataRoot().child('posts').child(${userId}).numChildren()`;
 
 users/$userId
