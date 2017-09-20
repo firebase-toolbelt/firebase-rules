@@ -215,6 +215,7 @@ data
 isData(any)
 dataExists
 dataIsEmpty
+
 newData
 isNewData(any)
 newDataExists
