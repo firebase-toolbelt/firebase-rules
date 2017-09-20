@@ -1,7 +1,7 @@
 {
   "name": "firebase-rules",
   "version": "1.0.1",
-  "description": "Composable firebase rules using plain javascript.",
+  "description": "Create readable and scalable firebase rules using javascript.",
   "homepage": "https://github.com/tasking/firebase-rules",
   "author": "Georges Boris",
   "license": "BSD-2-Clause",
