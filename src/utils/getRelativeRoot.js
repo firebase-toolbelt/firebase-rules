@@ -7,6 +7,6 @@
 module.exports = function getRelativeRoot(pathArr) {
   const depth = pathArr.length;
   let rootStr = 'newData.';
-  for (var i = 0; i < depth + 1; i++) { rootStr += 'parent().'; }
+  for (var i = 0; i < depth; i++) { rootStr += 'parent().'; }
   return rootStr;
 };

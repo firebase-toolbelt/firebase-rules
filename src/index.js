@@ -1,4 +1,4 @@
-const buildRules = require('./utils/buildRules');
+const { buildRules } = require('./utils/buildRules');
 const jsonfile = require('jsonfile-promised');
 const path = require('path');
 
