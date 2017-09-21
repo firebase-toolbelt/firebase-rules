@@ -12,6 +12,8 @@
 - [Common](#common)
 - [New Data Root](#new-data-root)
 
+[Testing](#testing)
+
 ## Getting Started
 
 The best way to understand how it works it's just by using it. Let's try it out in this quick demo.
@@ -234,7 +236,7 @@ newProp(any) | newChild(any)
 hasProp([]) | hasChildren([])
 ```
 
-e.g. a post can only be created with all required fields filled. the createdBy must hold the userId
+e.g. a post can only be created with all required fields filled. the createdBy must hold the userId.
 
 ```javascript
 post:
@@ -316,7 +318,7 @@ userWillExist('$userId') // newDataRoot().child(newData.child('createdBy').val()
 
 See the `newDataRoot()` that appears on the output above? Read below to understand it better.
 
-### New Data Root
+## New Data Root
 
 Turns out you can't really use the `root` variable when you're dealing with the data that is being added to your database.
 This can be a bit of a pain when you're defining reusable rules that will be used on a lot of different paths.
@@ -353,6 +355,51 @@ users/$userId/numberOfPosts:
 ```
 
 This is *really* useful when you're creating data on multiple locations that depend on each other.
+
+## Testing
+
+We recommend using the excelent [targaryen](https://github.com/goldibex/targaryen) library for testing your firebase rules without reaching for the server. Using it with **firebase-rules** is extremelly easy as you can generate your rules as an object instead of creating them on a file by just omitting the filename when calling the `createRules` function.
+
+```javascript
+const targaryen = require('targaryen');
+const chai, { expect } = require('chai');
+chai.use(targaryen);
+
+const createRules = require('firebase-rules');
+const { data } = require('firebase-rules/helpers/common');
+const { anyCondition } = require('firebase-rules/helpers/conditions');
+
+// you can retrieve your rules as an object
+// by just omitting the filename argument.
+
+const myFirebaseRules = createRules({
+  'my/path': {
+    validate: anyCondition(
+      isNewData('a'),
+      isNewData('b')
+    )
+  }
+});
+
+// an object representing your firebase data
+const myFirebaseData = {};
+
+// now you can test your rules
+
+describe('my firebase rules tests', function() {
+
+  before(function() {
+    targaryen.setFirebaseData(myFirebaseData);
+    targaryen.setFirebaseRules(myFirebaseRules);
+  });
+
+  it('should only allow 'a' or 'b' values to be written to `/my/path`', function() {
+    expect(null).can.write('a').to.path('my/path');
+    expect(null).cannot.write('c').to.path('my/path');
+  })
+
+});
+```
 
 ---
 
