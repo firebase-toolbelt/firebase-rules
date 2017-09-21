@@ -369,9 +369,11 @@ const createRules = require('firebase-rules');
 const { data } = require('firebase-rules/helpers/common');
 const { anyCondition } = require('firebase-rules/helpers/conditions');
 
-// you can retrieve your rules as an object
-// by just omitting the filename argument.
-
+/**
+ * You can retrieve your rules as an object
+ * by just omitting the filename argument.
+ */
+ 
 const myFirebaseRules = createRules({
   'my/path': {
     validate: anyCondition(
@@ -381,10 +383,15 @@ const myFirebaseRules = createRules({
   }
 });
 
-// an object representing your firebase data
+/**
+ * an object representing your firebase data
+ */
+ 
 const myFirebaseData = {};
 
-// now you can test your rules
+/**
+ * Now you can test your rules!
+ */
 
 describe('my firebase rules tests', function() {
 
