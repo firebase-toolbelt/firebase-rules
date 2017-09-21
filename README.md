@@ -366,7 +366,6 @@ const chai, { expect } = require('chai');
 chai.use(targaryen);
 
 const createRules = require('firebase-rules');
-const { data } = require('firebase-rules/helpers/common');
 const { anyCondition } = require('firebase-rules/helpers/conditions');
 
 /**
@@ -377,8 +376,8 @@ const { anyCondition } = require('firebase-rules/helpers/conditions');
 const myFirebaseRules = createRules({
   '/my/path': {
     validate: anyCondition(
-      isNewData('a'),
-      isNewData('b')
+      'newData.val() == 'a',
+      'newData.val() == 'b'
     )
   }
 });
