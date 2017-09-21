@@ -376,8 +376,8 @@ const { anyCondition } = require('firebase-rules/helpers/conditions');
 const myFirebaseRules = createRules({
   '/my/path': {
     validate: anyCondition(
-      'newData.val() == 'a',
-      'newData.val() == 'b'
+      `newData.val() == 'a'`,
+      `newData.val() == 'b'`
     )
   }
 });
