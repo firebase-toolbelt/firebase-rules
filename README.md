@@ -1,4 +1,4 @@
-<a align="center" href="https://keeptasking.com"><img width="100%" src="https://image.ibb.co/iWSg8k/Firebase_Rules.png" alt="Firebase Rules" border="0" /></a>
+<a align="center" href="https://github.com/tasking/firebase-toolbelt"><img width="100%" src="https://image.ibb.co/iWSg8k/Firebase_Rules.png" alt="Firebase Rules" border="0" /></a>
 
 > Make your Firebase database rules readable and scalable. Using only javascript.
 
