@@ -75,7 +75,7 @@ const parsePathRules = pathArr =>
 
 // RulePairs -> RuleParsedPairs
 const toParsedPairs = map(entry => {
-  const pathArr = entry[0].split('/');
+  const pathArr = entry[0].split('/').filter((x) => x && !!x.length);
   return [pathArr, parsePathRules(pathArr)(entry[1])];
 });
 
@@ -90,10 +90,11 @@ const toParsedRules = reduce(
 );
 
 // buildRules : UnparsedRules : ParsedRules
-const buildRules = pipe([toPairs, toParsedPairs, map(trace), toParsedRules]);
+const buildRules = pipe([toPairs, toParsedPairs, toParsedRules]);
 
 module.exports = {
   buildRules,
+  _toParsedPairs: toParsedPairs,
   _parseRuleValue: parseRuleValue,
   _toParsedRules: toParsedRules
 };

@@ -1,7 +1,22 @@
 const {
+  _toParsedPairs,
   _parseRuleValue,
   _toParsedRules
 } = require('./buildRules');
+
+test('toParsedPairs - it should optionally accept a leading / before the path', () => {
+  
+  const result = _toParsedPairs([
+    ['my/path', { validate: true }],
+    ['/my/other/path', { validate: true }]
+  ]);
+
+  expect(result.map((x) => x[0])).toEqual([
+    ['my', 'path'],
+    ['my', 'other', 'path']
+  ]);
+
+});
 
 test('parseRuleValue - it should replace newDataRoot with regards to the passed pathArr length', () => {
   
