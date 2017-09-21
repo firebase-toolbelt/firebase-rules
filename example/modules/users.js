@@ -2,10 +2,11 @@ const {
   isAuth,
   isAuthId,
   isString,
+  newDataExists,
   hasChildren,
   validate
-} = require('firebase-rules/helpers/common');
-const { ifCondition } = require('firebase-rules/helpers/conditions');
+} = require('../../helpers/common');
+const { ifCondition } = require('../..//helpers/conditions');
 
 const isUserAndIsNotRemoving = ifCondition(
   newDataExists,
@@ -13,7 +14,7 @@ const isUserAndIsNotRemoving = ifCondition(
   false
 );
 
-const userRules = {
+module.exports = {
   'users/$userId': {
     read: isAuth,
     write: isUserAndIsNotRemoving,

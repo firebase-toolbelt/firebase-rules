@@ -99,12 +99,12 @@ Now let's export this rules so we can import them to firebase.
 ```javascript
 // ./rules/index.js
 
-const { exportRules } = require('firebase-rules');
+const createRules = require('firebase-rules');
 
-exportRules([
-  require('./modules/users'),
-  require('./modules/posts')
-], 'database.rules.json');
+createRules({
+  ...require('./modules/users'),
+  ...require('./modules/posts')
+}, 'database.rules.json');
 
 ```
 
@@ -258,6 +258,18 @@ posts/$postId/createdAt: validate(isNow)
 posts/$postId/createdBy: validate(isAuthId(newData))
 ```
 
+**indexing**
+
+```
+indexOn([string])
+```
+
+e.g. indexing some children for optimized querying
+
+```
+posts/$postId:
+  indexOn: ['createdAt', 'createdBy']
+```
 
 **user defined strings**
 

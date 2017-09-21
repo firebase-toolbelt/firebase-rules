@@ -7,9 +7,9 @@ const {
   isString,
   isNow,
   validate
-} = require('firebase-rules/helpers/common');
+} = require('../../helpers/common');
 
-const postRules = createRules({
+module.exports = {
   'posts/$postId': {
     read: isAuth,
     write: isAuthId(newProp('createdBy')),
@@ -20,6 +20,4 @@ const postRules = createRules({
   'posts/$postId/createdAt': validate(isNow),
   'posts/$postId/createdBy': validate(isAuthId(newData)),
   'posts/$postId/$invalidProp': validate(false)
-});
-
-module.exports = userRules;
+};

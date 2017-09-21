@@ -1,6 +1,6 @@
-module.exports = {
-  'write': true,
-  'read': true,
-  'validate': true,
-  'indexOn': true
-};
+module.exports = [
+  'write',
+  'read',
+  'validate',
+  'indexOn'
+];

@@ -1,4 +1,4 @@
-const createRules = require('firebase-rules');
+const createRules = require('../src/');
 
 createRules({
   ...require('./modules/users'),

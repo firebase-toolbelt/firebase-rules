@@ -52,7 +52,7 @@ exports.newDataIsEmpty = toNewData(dataIsEmpty);
  * Props / Children
  */
 
-const prop = propName => `data.child(\'${propName}\'`;
+const prop = propName => `data.child(\'${propName}\')`;
 const newProp = toNewData(prop);
 
 exports.prop = prop;
@@ -81,3 +81,9 @@ exports.isNow = 'newData.val() == now';
  */
 
 exports.validate = condition => ({ validate: condition });
+
+/**
+ * IndexOn
+ */
+
+exports.indexOn = jsonArr;

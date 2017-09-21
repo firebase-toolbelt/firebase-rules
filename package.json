@@ -5,7 +5,7 @@
   "homepage": "https://github.com/tasking/firebase-rules",
   "author": "Georges Boris",
   "license": "BSD-2-Clause",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest",
     "start": "jest --watch"

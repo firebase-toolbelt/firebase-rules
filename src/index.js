@@ -1,17 +1,10 @@
-const buildPath = require('./utils/buildPath');
+const buildRules = require('./utils/buildRules');
 const jsonfile = require('jsonfile-promised');
+const path = require('path');
 
-module.exports = function createRules(_rules, path) {
-
-  let rules = {};
-  const pathKeys = Object.getOwnPropertyNames(rulesObj);
-  pathKeys.forEach((pathKey) => buildPath(_rules, pathKey, rulesObj[pathKey]));
-  rules = { rules };
-
-  if (path) {
-    return jsonfile.writeFile(process.cwd() + path, rules, { spaces: 2 }).catch(console.log);
-  }
-
-  return rules;
-
+module.exports = function createRules(_rules, filepath) {
+  const rules = buildRules(_rules);
+  return (path)
+    ? jsonfile.writeFile(path.resolve(process.cwd(), filepath), rules, { spaces: 2 }).catch(console.log)
+    : rules;
 }
