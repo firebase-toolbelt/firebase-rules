@@ -375,7 +375,7 @@ const { anyCondition } = require('firebase-rules/helpers/conditions');
  */
  
 const myFirebaseRules = createRules({
-  'my/path': {
+  '/my/path': {
     validate: anyCondition(
       isNewData('a'),
       isNewData('b')
@@ -401,8 +401,8 @@ describe('my firebase rules tests', function() {
   });
 
   it('should only allow 'a' or 'b' values to be written to `/my/path`', function() {
-    expect(null).can.write('a').to.path('my/path');
-    expect(null).cannot.write('c').to.path('my/path');
+    expect(null).can.write('a').to.path('/my/path');
+    expect(null).cannot.write('c').to.path('/my/path');
   })
 
 });
