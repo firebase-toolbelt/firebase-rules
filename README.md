@@ -45,27 +45,31 @@ No users are ever removed from our app.
 ```javascript
 // ./rules/modules/users.js
 
-const { createRules } = require('firebase-rules');
-const { isAuth, valueIsAuthUserId, newDataIsString, validate } = require('firebase-rules/helpers/common');
 const { ifCondition } = require('firebase-rules/helpers/conditions');
+const {
+  isAuth,
+  isAuthId,
+  newDataExists,
+  hasChildren,
+  isString,
+  validate
+} = require('firebase-rules/helpers/common');
 
 const isUserAndIsNotRemoving = ifCondition(
   newDataExists,
-  valueIsAuthUserId('$userId'),
+  isAuthId('$userId'),
   false
 );
 
-const userRules = createRules({
+module.exports = {
   'users/$userId': {
     read: isAuth,
     write: isUserAndIsNotRemoving,
-    validate: newDataHasChildren(['firstName'])
+    validate: hasChildren(['firstName'])
   },
-  'users/$userId/firstName': validate(newDataIsString),
+  'users/$userId/firstName': validate(isString),
   'users/$userId/$invalidProp': validate(false)
 });
-
-module.exports = userRules;
 ```
 
 Next we can build our post object rules.
@@ -75,23 +79,28 @@ Posts can be read by any of our app's users.
 ```javascript
 // ./rules/modules/posts.js
 
-const { createRules } = require('firebase-rules');
-const { isAuth, valueIsAuthUserId, newDataIsString, newDataIsNow, validate } = require('firebase-rules/helpers/common');
+const {
+  isAuth,
+  isAuthId,
+  isString,
+  isNow,
+  newProp,
+  hasChildren,
+  validate
+} = require('firebase-rules/helpers/common');
 
-const postRules = createRules({
+module.exports = {
   'posts/$postId': {
     read: isAuth,
-    write: valueIsAuthUserId(newDataProp('createdBy')),
-    validate: newDataHasChildren(['title', 'body', 'createdAt', 'createdBy'])
+    write: isAuthId(newProp('createdBy')),
+    validate: hasChildren(['title', 'body', 'createdAt', 'createdBy'])
   },
-  'posts/$postId/title': validate(newDataIsString),
-  'posts/$postId/body': validate(newDataIsString),
-  'posts/$postId/createdAt': validate(newDataIsNow),
-  'posts/$postId/createdBy': validate(valueIsAuthUserId(newData)),
+  'posts/$postId/title': validate(isString),
+  'posts/$postId/body': validate(isString),
+  'posts/$postId/createdAt': validate(isNow),
+  'posts/$postId/createdBy': validate(isAuthId(newData)),
   'posts/$postId/$invalidProp': validate(false)
-});
-
-module.exports = userRules;
+};
 ```
 
 Now let's export this rules so we can import them to firebase.
