@@ -15,8 +15,8 @@ exports.s = (x) => `\'${x}\'`;
  * Transformers
  */
 
-const toData = liftedReplace([['newData.', 'data.'], ['newDataRoot().', 'root.']]);
-const toNewData = liftedReplace([['data.', 'newData.'], ['root.', 'newDataRoot().']]);
+const toData = liftedReplace([[/newData\./g, 'data.'], [/newDataRoot\(\)\./, 'root.']]);
+const toNewData = liftedReplace([[/data\./g, 'newData.'], [/root\./, 'newDataRoot().']]);
 
 exports.toData = toData;
 exports.toNewData = toNewData;

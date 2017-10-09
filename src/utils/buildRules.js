@@ -46,9 +46,24 @@ const filter = require('lodash/fp/filter');
 const set = require('lodash/fp/set');
 const pipe = require('lodash/fp/flow');
 const toPairs = require('lodash/fp/toPairs');
+const flip = require('lodash/fp/flip');
+const concat = require('lodash/fp/concat');
+const join = require('lodash/fp/join');
 
-const validRulesKeys = require('../constants/validRulesKeys');
-const getRelativeRoot = require('./getRelativeRoot');
+// getRelativeRoot : [pathArray] -> string
+const getRelativeRoot = pipe(
+  map(x => 'parent().'),
+  flip(concat)('newData.'),
+  join('')
+);
+
+// Valid rules keys used by Firebase.
+const validRulesKeys = [
+  'write',
+  'read',
+  'validate',
+  'indexOn'
+];
 
 // filterInvalidRuleKeys : [[maybeValidRuleKey, anyRuleValue]] -> [[validRuleKey, anyRuleValue]]
 const filterInvalidRuleKeys = filter(

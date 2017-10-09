@@ -1,6 +1,11 @@
-const replace = require('lodash/fp/replace');
 const lift = require('./liftFunction');
 
-module.exports = function liftReplace(substr, newSubstr) {
-  return lift(replace(substr, newSubstr));
+const replaceMultiple = replacements => target => (
+  replacements.reduce((acc, args) => {
+    return acc.replace(args[0], args[1]);
+  }, target)
+);
+
+module.exports = function liftedReplace(replacements) {
+  return lift(replaceMultiple(replacements));
 }
