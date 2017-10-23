@@ -58,12 +58,7 @@ const getRelativeRoot = pipe(
 );
 
 // Valid rules keys used by Firebase.
-const validRulesKeys = [
-  'write',
-  'read',
-  'validate',
-  'indexOn'
-];
+const validRulesKeys = ['write', 'read', 'validate', 'indexOn'];
 
 // filterInvalidRuleKeys : [[maybeValidRuleKey, anyRuleValue]] -> [[validRuleKey, anyRuleValue]]
 const filterInvalidRuleKeys = filter(
@@ -71,7 +66,7 @@ const filterInvalidRuleKeys = filter(
 );
 
 // 'validate' -> '.validate'
-const parseRuleKey = key => `.${key}`;
+const parseRuleKey = key => (key.indexOf('.') === 0 ? key : `.${key}`);
 
 // `newDataRoot().child('path')` -> `newData.parent().child('path')`
 const parseRuleValue = pathArr => ruleValue => {
@@ -90,17 +85,19 @@ const parsePathRules = pathArr =>
 
 // RulePairs -> RuleParsedPairs
 const toParsedPairs = map(entry => {
-  const pathArr = entry[0].split('/').filter((x) => x && !!x.length);
+  const pathArr = entry[0].split('/').filter(x => x && !!x.length);
   return [pathArr, parsePathRules(pathArr)(entry[1])];
 });
 
 // RuleParsedPairs -> ParsedRules
 const toParsedRules = reduce(
-  (acc, pathRules) => reduce(
-    (acc, entry) => set(['rules'].concat(pathRules[0], entry[0]), entry[1], acc),
-    acc,
-    pathRules[1]
-  ),
+  (acc, pathRules) =>
+    reduce(
+      (acc, entry) =>
+        set(['rules'].concat(pathRules[0], entry[0]), entry[1], acc),
+      acc,
+      pathRules[1]
+    ),
   { rules: {} }
 );
 
