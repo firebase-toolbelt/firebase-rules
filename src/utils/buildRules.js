@@ -58,7 +58,7 @@ const getRelativeRoot = pipe(
 );
 
 // Valid rules keys used by Firebase.
-const validRulesKeys = ['write', 'read', 'validate', 'indexOn'];
+const validRulesKeys = ['.write', '.read', '.validate', '.indexOn'];
 
 // filterInvalidRuleKeys : [[maybeValidRuleKey, anyRuleValue]] -> [[validRuleKey, anyRuleValue]]
 const filterInvalidRuleKeys = filter(
@@ -79,8 +79,8 @@ const parseRuleValue = pathArr => ruleValue => {
 const parsePathRules = pathArr =>
   pipe([
     toPairs,
-    filterInvalidRuleKeys,
-    map(entry => [parseRuleKey(entry[0]), parseRuleValue(pathArr)(entry[1])])
+    map(entry => [parseRuleKey(entry[0]), parseRuleValue(pathArr)(entry[1])]),
+    filterInvalidRuleKeys
   ]);
 
 // RulePairs -> RuleParsedPairs
