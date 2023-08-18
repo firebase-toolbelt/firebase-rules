@@ -1,3 +1,8 @@
+> ⚠️ **Important** ⚠️
+> This repository is not actively maintained so feel free to fork it and improve it. I've not been using Firebase for years - so I'm not motivated to continue maintaining libraries around it.
+
+---
+
 <a align="center" href="https://github.com/firebase-toolbelt/firebase-toolbelt"><img width="100%" src="https://image.ibb.co/iWSg8k/Firebase_Rules.png" alt="Firebase Rules" border="0" /></a>
 
 > Make your Firebase database rules readable and scalable. Using only javascript.
